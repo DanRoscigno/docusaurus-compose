@@ -6,20 +6,25 @@ A big hassle when writing docs for ClickHouse is copying the right file into the
 
 ## Using docker compose to put everything in place
 
-### Clone the ClickHouse repos if you do not have them:
+### Clone the repos:
 
+The ClickHouse and clickhouse-docs repos:
 ```bash
-git clone ...
-git clone ...
+git clone git@github.com:ClickHouse/ClickHouse.git
+git clone git@github.com:ClickHouse/clickhouse-docs.git
 ```
 
-### clone this repo into the same directory as you have `ClickHouse/ClickHouse` and `ClickHouse/clickhouse-docs`
+This repo:
+```bash
+git clone git@github.com:DanRoscigno/docusaurus-compose.git
+```
 
   Note: once this is tested I will add it to `ClickHouse/clickhouse-docs`
 
 ### build the image
 
 ```bash
+cd docusaurus-compose 
 docker compose build
 ```
 
@@ -36,3 +41,7 @@ See earlier note, you might need `docker-compose up`
 ### Connect with a browser
 
 You should see a message in the docker compose output about `[SUCCESS] Docusaurus website is running at: http://localhost:3000/docs/`.  Open a browser to the URL presented and you should see the ClickHouse top menu and Page not Found, click on `Docs`
+
+### Test it
+
+Edit a markdown file in either of the ClickHouse repos (pick one under the `docs` dir) and save your edits.  Navigate to the corresponding page in the browser window connected to the Docusaurus container and see if the edits are showing there.
