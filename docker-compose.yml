@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  docusaurus:
+    build: .
+    network_mode: "host"
+    volumes:
+      - ../clickhouse-docs:/app/website
+      - ../ClickHouse/docs/ru:/app/website/docs/ru
+      - ../ClickHouse/docs/zh:/app/website/docs/zh
+      - ../ClickHouse/docs/en/engines:/app/website/docs/en/engines
+      - ../ClickHouse/docs/en/interfaces:/app/website/docs/en/interfaces
+      - ../ClickHouse/docs/en/operations:/app/website/docs/en/operations
+      - ../ClickHouse/docs/en/development:/app/website/docs/en/development
+      - ../ClickHouse/docs/en/sql-reference:/app/website/docs/en/sql-reference
+      - ../ClickHouse/docs/en/getting-started:/app/website/docs/en/getting-started
+
+    working_dir: /app/website
