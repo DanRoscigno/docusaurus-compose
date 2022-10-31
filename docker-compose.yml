@@ -4,6 +4,7 @@ services:
   docusaurus:
     build: .
     network_mode: "host"
+    user: ${MY_UID}:${MY_GID}
     volumes:
       - ../clickhouse-docs:/app/website
       - ../ClickHouse/docs/ru:/app/website/docs/ru

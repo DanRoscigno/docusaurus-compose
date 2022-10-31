@@ -21,19 +21,26 @@ git clone git@github.com:DanRoscigno/docusaurus-compose.git
 
   Note: once this is tested I will add it to `ClickHouse/clickhouse-docs`
 
-### build the image
+### Ensure that the container will run Docusaurus as you
+
+Docusaurus will generate files, and they should be generated with your `UID` and `GID` so that you can manage them outside of the container.  To do this the compose file has a line `user: ${MY_UID}:${MY_GID}`, which will set the UID and GID.  To get this set to your values export them before running `docker compose`.
+
+Export your `UID` and `GID`
+user: ${MY_UID}:${MY_GID}
+
+#### build the image
 
 ```bash
 cd docusaurus-compose 
-docker compose build
+MY_UID="$(id -u)" MY_GID="$(id -g)" docker compose build
 ```
 
 Note: If `docker compose` does not work for you try `docker-compose` and if neither work please install `docker-compose` for your version of Docker.  The latest version of Docker has `docker compose` built in, but I think the old Python `docker-compose` probably works fine.
 
-### Run the compose file
+#### Run the compose file
 
 ```bash
-docker compose up
+MY_UID="$(id -u)" MY_GID="$(id -g)" docker compose up
 ```
 
 See earlier note, you might need `docker-compose up`
